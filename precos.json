@@ -1,0 +1,154 @@
+{
+  "_leia": "Preencha 'valor' com o preço em reais (ex.: 129.9). Jogo sem valor continua Indisponível. 'frete' é um valor fixo somado ao pedido; 0 = frete combinado pelo WhatsApp.",
+  "frete": 0,
+  "jogos": {
+    "01": {
+      "nome": "Saltfjord",
+      "valor": null
+    },
+    "02": {
+      "nome": "Money!",
+      "valor": null
+    },
+    "03": {
+      "nome": "Torchlit",
+      "valor": null
+    },
+    "04": {
+      "nome": "Mesos",
+      "valor": null
+    },
+    "05": {
+      "nome": "Sweet & Spicy",
+      "valor": null
+    },
+    "06": {
+      "nome": "Deep Regrets",
+      "valor": null
+    },
+    "07": {
+      "nome": "Echoes of Time",
+      "valor": null
+    },
+    "08": {
+      "nome": "Logic Cards: Palitinhos",
+      "valor": null
+    },
+    "09": {
+      "nome": "Valheim: Edição Deluxe",
+      "valor": null
+    },
+    "10": {
+      "nome": "Balconia",
+      "valor": null
+    },
+    "11": {
+      "nome": "General Orders: World War II",
+      "valor": null
+    },
+    "12": {
+      "nome": "Vudú: 2ª edição",
+      "valor": null
+    },
+    "13": {
+      "nome": "Paper Dungeons",
+      "valor": null
+    },
+    "14": {
+      "nome": "Heróis: Escrever & Conquistar",
+      "valor": null
+    },
+    "15": {
+      "nome": "Vida no Campo",
+      "valor": null
+    },
+    "16": {
+      "nome": "Nanatoridori",
+      "valor": null
+    },
+    "17": {
+      "nome": "Os Gatos de Schrödinger",
+      "valor": null
+    },
+    "18": {
+      "nome": "7 Wonders Duel",
+      "valor": null
+    },
+    "19": {
+      "nome": "Azul",
+      "valor": null
+    },
+    "20": {
+      "nome": "Munchkin",
+      "valor": null
+    },
+    "21": {
+      "nome": "Vampiro: A Máscara",
+      "valor": null
+    },
+    "22": {
+      "nome": "Histórias Sinistras",
+      "valor": null
+    },
+    "23": {
+      "nome": "The Resistance",
+      "valor": null
+    },
+    "24": {
+      "nome": "Ticket to Ride: Europa",
+      "valor": null
+    },
+    "25": {
+      "nome": "Pandemic",
+      "valor": null
+    },
+    "26": {
+      "nome": "Dorf Romantik: Sakura",
+      "valor": null
+    },
+    "27": {
+      "nome": "Café",
+      "valor": null
+    },
+    "28": {
+      "nome": "Scooby-Doo: Hotel Mal-Assombrado",
+      "valor": null
+    },
+    "29": {
+      "nome": "Oliva",
+      "valor": null
+    },
+    "30": {
+      "nome": "Revive",
+      "valor": null
+    },
+    "31": {
+      "nome": "Convidados Indesejados 2: Os Casos Berwick",
+      "valor": null
+    },
+    "32": {
+      "nome": "Calico",
+      "valor": null
+    },
+    "33": {
+      "nome": "Arrisco e Rabisco",
+      "valor": null
+    },
+    "34": {
+      "nome": "Bla Bla Bel",
+      "valor": null
+    },
+    "35": {
+      "nome": "Toy Story: Esconde-Esconde",
+      "valor": null
+    },
+    "36": {
+      "nome": "Protocolo: Scintilla",
+      "valor": null
+    },
+    "37": {
+      "nome": "Disney Coup: Golpes Geniais",
+      "valor": null
+    }
+  }
+}

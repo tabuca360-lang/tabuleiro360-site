@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Seu pedido · Tabuleiro 360</title>
+<style>
+  :root{--ink:#1F2A33;--bg:#FAF3E0;--card:#FFFDF7;--red:#D8352A;--green:#2E9E5B;--yellow:#F2A32D}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:grid;place-items:center;padding:20px}
+  main{width:100%;max-width:560px;background:var(--card);border:2px solid var(--ink);border-radius:20px;box-shadow:6px 6px 0 var(--ink);padding:28px 24px}
+  h1{margin:0 0 8px;font-size:28px;line-height:1.15}
+  p{line-height:1.5;margin:8px 0}
+  .tag{display:inline-block;padding:4px 12px;border-radius:99px;border:2px solid var(--ink);font-weight:700;font-size:13px;margin-bottom:12px}
+  .ok .tag{background:#D6F0DE}.pendente .tag{background:#FFE7A8}.erro .tag{background:#FFE0DB}
+  ul{padding:0;margin:14px 0;list-style:none;border-top:2px dashed var(--ink)}
+  li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed #b9ad8f}
+  .btn{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:14px;padding:16px 20px;border-radius:14px;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-weight:700;font-size:17px;text-decoration:none;color:#fff;background:var(--green)}
+  .btn.alt{background:var(--card);color:var(--ink)}
+  small{color:#3A4650}
+</style>
+</head>
+<body>
+<main id="m" class="pendente">
+  <span class="tag" id="tag">Conferindo…</span>
+  <h1 id="tit">Quase lá</h1>
+  <p id="txt"></p>
+  <ul id="lista" hidden></ul>
+  <a class="btn" id="wpp" href="#" hidden>Enviar meu pedido no WhatsApp</a>
+  <a class="btn alt" href="/">Voltar para a loja</a>
+  <p><small id="ref"></small></p>
+</main>
+<script>
+(function () {
+  var NUM = '5522992932852';
+  var q = new URLSearchParams(location.search);
+  var s = q.get('s') || 'pendente';
+  var pedido = null;
+  try { pedido = JSON.parse(localStorage.getItem('t360_pedido') || 'null'); } catch (e) {}
+  var m = document.getElementById('m'), $ = function (id) { return document.getElementById(id); };
+  var brl = function (n) { return Number(n || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); };
+  m.className = s;
+  var ref = q.get('external_reference') || (pedido && pedido.ref) || '';
+  if (ref) $('ref').textContent = 'Pedido ' + ref;
+
+  if (s === 'ok') {
+    $('tag').textContent = 'Pagamento aprovado';
+    $('tit').textContent = 'Obrigado pela compra!';
+    $('txt').textContent = 'Recebemos o seu pagamento. Para combinarmos a entrega (e o frete, se ainda não estiver no valor), é só mandar o resumo do pedido pelo WhatsApp.';
+    try { localStorage.removeItem('t360_cart'); } catch (e) {}
+  } else if (s === 'pendente') {
+    $('tag').textContent = 'Aguardando pagamento';
+    $('tit').textContent = 'Seu pedido está em análise';
+    $('txt').textContent = 'Assim que o Mercado Pago confirmar o pagamento (Pix e boleto podem levar um pouco), a gente separa o seu jogo. Você pode nos avisar pelo WhatsApp.';
+  } else {
+    $('tag').textContent = 'Pagamento não concluído';
+    $('tit').textContent = 'Não foi dessa vez';
+    $('txt').textContent = 'O pagamento não foi concluído e nada foi cobrado. Seu carrinho continua salvo: volte para a loja e tente de novo, ou chame a gente no WhatsApp.';
+  }
+
+  var msg = 'Olá! Fiz um pedido no Tabuleiro 360.';
+  if (ref) msg += '\nPedido: ' + ref;
+  if (pedido && pedido.itens && pedido.itens.length) {
+    var l = $('lista'); l.hidden = false;
+    pedido.itens.forEach(function (i) {
+      var li = document.createElement('li');
+      var a = document.createElement('span'); a.textContent = i.qtd + '× ' + i.nome;
+      var b = document.createElement('span'); b.textContent = brl(i.valor * i.qtd);
+      li.appendChild(a); li.appendChild(b); l.appendChild(li);
+      msg += '\n- ' + i.qtd + '× ' + i.nome;
+    });
+    var t = document.createElement('li'); t.innerHTML = '<strong>Total</strong>';
+    var tv = document.createElement('strong'); tv.textContent = brl(pedido.total); t.appendChild(tv); l.appendChild(t);
+    msg += '\nTotal: ' + brl(pedido.total);
+  }
+  if (pedido && pedido.nome) msg += '\nNome: ' + pedido.nome;
+  var w = $('wpp'); w.hidden = false; w.href = 'https://wa.me/' + NUM + '?text=' + encodeURIComponent(msg);
+  if (s === 'erro') { w.classList.add('alt'); w.textContent = 'Falar no WhatsApp'; w.style.color = 'var(--ink)'; w.style.background = 'var(--card)'; }
+})();
+</script>
+</body>
+</html>
